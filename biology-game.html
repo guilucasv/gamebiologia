@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jornada pelo Corpo Humano - GameEducat</title>
+    <link rel="stylesheet" href="biology-game.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🧬</div>
+                    <h1 class="logo-text">Jornada pelo Corpo Humano</h1>
+                </div>
+                <div class="game-stats">
+                    <div class="stat">
+                        <span class="stat-label">Pontos:</span>
+                        <span id="score" class="stat-value">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Nível:</span>
+                        <span id="level" class="stat-value">1</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Game Area -->
+    <main class="main">
+        <div class="container">
+            <!-- Welcome Screen -->
+            <section id="welcome-screen" class="welcome-screen">
+                <div class="welcome-content">
+                    <h2 class="welcome-title">Bem-vindo à Jornada pelo Corpo Humano!</h2>
+                    <p class="welcome-subtitle">Explore os sistemas digestório e respiratório de forma interativa</p>
+                    <div class="system-selection">
+                        <div class="system-card" data-system="digestive">
+                            <div class="system-icon">🍎</div>
+                            <h3>Sistema Digestório</h3>
+                            <p>Descubra como o corpo processa os alimentos</p>
+                        </div>
+                        <div class="system-card" data-system="respiratory">
+                            <div class="system-icon">🫁</div>
+                            <h3>Sistema Respiratório</h3>
+                            <p>Aprenda como respiramos e trocamos gases</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Game Screen -->
+            <section id="game-screen" class="game-screen hidden">
+                <div class="game-header">
+                    <button id="back-btn" class="back-btn">← Voltar</button>
+                    <h2 id="system-title" class="system-title">Sistema Digestório</h2>
+                    <div class="progress-bar">
+                        <div id="progress" class="progress-fill"></div>
+                    </div>
+                </div>
+
+                <div class="game-content">
+                    <!-- Organ Display -->
+                    <div class="organ-display">
+                        <div id="organ-container" class="organ-container">
+                            <img id="organ-image" src="" alt="Órgão" class="organ-image">
+                            <div class="organ-info">
+                                <h3 id="organ-name" class="organ-name">Boca</h3>
+                                <p id="organ-description" class="organ-description">
+                                    A boca é onde começa a digestão. Os dentes trituram o alimento e a saliva inicia a quebra dos carboidratos.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question Area -->
+                    <div id="question-area" class="question-area">
+                        <div class="question-card">
+                            <h3 id="question-text" class="question-text">
+                                Qual enzima é responsável pela digestão de carboidratos na boca?
+                            </h3>
+                            <div id="options-container" class="options-container">
+                                <button class="option-btn" data-option="a">Pepsina</button>
+                                <button class="option-btn" data-option="b">Amilase Salivar</button>
+                                <button class="option-btn" data-option="c">Lipase</button>
+                                <button class="option-btn" data-option="d">Tripsina</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fun Fact Area -->
+                    <div id="fact-area" class="fact-area hidden">
+                        <div class="fact-card">
+                            <div class="fact-icon">💡</div>
+                            <h3>Fato Curioso!</h3>
+                            <p id="fact-text" class="fact-text">
+                                Você sabia que produzimos cerca de 1 a 1,5 litros de saliva por dia?
+                            </p>
+                            <button id="continue-btn" class="continue-btn">Continuar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Screen -->
+            <section id="results-screen" class="results-screen hidden">
+                <div class="results-content">
+                    <div class="results-icon">🎉</div>
+                    <h2 class="results-title">Parabéns!</h2>
+                    <p class="results-subtitle">Você completou a jornada pelo sistema!</p>
+                    <div class="final-stats">
+                        <div class="final-stat">
+                            <span class="final-stat-label">Pontuação Final:</span>
+                            <span id="final-score" class="final-stat-value">0</span>
+                        </div>
+                        <div class="final-stat">
+                            <span class="final-stat-label">Acertos:</span>
+                            <span id="correct-answers" class="final-stat-value">0/10</span>
+                        </div>
+                    </div>
+                    <div class="results-actions">
+                        <button id="restart-btn" class="restart-btn">Jogar Novamente</button>
+                        <button id="home-btn" class="home-btn">Voltar ao Início</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas" class="confetti-canvas"></canvas>
+
+    <!-- Modal for Feedback -->
+    <div id="feedback-modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div id="feedback-icon" class="feedback-icon">✅</div>
+            <h3 id="feedback-title" class="feedback-title">Correto!</h3>
+            <p id="feedback-text" class="feedback-text">Muito bem! Você acertou a resposta.</p>
+            <button id="feedback-close" class="feedback-close">Continuar</button>
+        </div>
+    </div>
+
+    <script src="biology-game.js"></script>
+</body>
+</html>
+
